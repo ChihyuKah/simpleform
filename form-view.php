@@ -25,12 +25,13 @@
         <button type="submit" name="refresh" class="btn btn-primary">refresh page!</button>
         </form>
     </nav>
+    <?php echo ($formSend)?>
 
     <form method="post">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail:</label>
-                <input type="text" id="email" name="email" class="form-control"/>
+                <input type="text" id="email" name="email" class="form-control" value="<?php echo ($emailSes)?>"/>
             </div>
             <div></div>
         </div>
@@ -81,7 +82,7 @@
             <?php endforeach; ?>
         </fieldset>
 
-        <button type="submit" class="btn btn-primary">Order!</button>
+        <button type="submit" class="btn btn-primary" name="order">Order!</button>
     </form>
 
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>

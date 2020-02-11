@@ -53,6 +53,14 @@ function inputfield($data) {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["email"])) {
+        $streetErr = "E-mail is required</br>";
+    } else {
+        $street = inputfield($_POST["email"]);
+        $_SESSION["email"] = $_POST["email"];
+
+
+    }
     if (empty($_POST["street"])) {
          $streetErr = "street is required</br>";
     } else {
@@ -82,6 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 }
+$emailSes = $_SESSION["email"];
 $streetSes = $_SESSION["street"];
 $streetNumSes = $_SESSION["streetnumber"];
 $citySes = $_SESSION["city"];
@@ -98,6 +107,7 @@ if (isset($_POST["email"]) && $_POST["streetnumber"]){
     if (emailValidation($_POST["email"])){
         echo ("valid email");
 
+
     }else {
         echo ("this is not a freaking valid mail </br>");
     }
@@ -105,6 +115,7 @@ if (isset($_POST["email"]) && $_POST["streetnumber"]){
     //streetnum validation
     if (streetNumValidation($_POST["streetnumber"])){
         echo ("valid streetnumber");
+
     }
     else {
         echo("this is not a streetNumber!</br>");
@@ -122,11 +133,20 @@ function streetNumValidation ($numberValidation) {
 
 whatIsHappening();
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["refresh"])) {
     header("refresh");
 
-    echo date('H:i:s Y-m-d');
+}
 
+//valid form message
+$formSend ="";
+if (isset ($_POST["order"])) {
+    if ($_POST["order"] = false) {
+        echo ("trash");
+
+    } else {
+        $formSend = "<div class=\"alert alert-success\" role=\"alert\">Your form has been submitted</div>";
+    }
 }
 
 require 'form-view.php';
