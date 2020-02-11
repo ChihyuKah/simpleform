@@ -10,7 +10,9 @@ session_start();
 
 $streetErr = $streetNumbErr = $cityErr = $zipcodeErr = "";
 $street = $streetNumb = $city = $zipcode = "";
-$emailErr = "Email required";
+$emailSes = $streetSes = $streetNumbSes = $citySes = $zipcodeSes = "";
+$productsDrinks = $products = "";
+$formSend ="";
 
 
 
@@ -27,6 +29,7 @@ function whatIsHappening() {
 
 
 //your products with their price.
+
 $products = [
     ['name' => 'Club Ham', 'price' => 3.20],
     ['name' => 'Club Cheese', 'price' => 3],
@@ -35,12 +38,23 @@ $products = [
     ['name' => 'Club Salmon', 'price' => 5]
 ];
 
-$products = [
+$productsDrinks = [
     ['name' => 'Cola', 'price' => 2],
     ['name' => 'Fanta', 'price' => 2],
     ['name' => 'Sprite', 'price' => 2],
     ['name' => 'Ice-tea', 'price' => 3],
 ];
+
+if (!isset($_GET["food"])) {
+    $_GET["food"] = 1;
+}
+
+if ($_GET["food"] == 1){
+    $products = $products;
+} else {
+    $products = $productsDrinks;
+}
+
 
 $totalValue = 0;
 
@@ -52,12 +66,20 @@ function inputfield($data) {
 }
 
 
+//$emailSes = $_SESSION["email"];
+//$streetSes = $_SESSION["street"];
+//$streetNumbSes = $_SESSION["streetnumber"];
+//$citySes = $_SESSION["city"];
+//$zipcodeSes = $_SESSION["zipcode"];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
     if (empty($_POST["email"])) {
         $streetErr = "E-mail is required</br>";
     } else {
-        $street = inputfield($_POST["email"]);
-        $_SESSION["email"] = $_POST["email"];
+        $email = inputfield($_POST["email"]);
+       $emailSes = $_SESSION["email"] = $_POST["email"];
 
 
     }
@@ -65,37 +87,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $streetErr = "street is required</br>";
     } else {
         $street = inputfield($_POST["street"]);
-        $_SESSION["street"] = $_POST["street"];
+       $streetSes = $_SESSION["street"] = $_POST["street"];
     }
 
     if (empty($_POST["streetnumber"])) {
         ($streetNumbErr = "streetnumber is required</br>");
     } else {
         $streetNumb = inputfield($_POST["streetnumber"]);
-        $_SESSION["streetnumber"] = $_POST["streetnumber"];
+       $streetNumbSes = $_SESSION["streetnumber"] = $_POST["streetnumber"];
     }
 
     if (empty($_POST["city"])) {
         ($cityErr = "Your city is required</br>");
     } else {
         $city = inputfield($_POST["city"]);
-        $_SESSION["city"] = $_POST["city"];
+        $citySes = $_SESSION["city"] = $_POST["city"];
     }
 
     if (empty($_POST["zipcode"])) {
         ($zipcodeErr = "zipcode is required</br>");
     } else {
         $zipcode = inputfield($_POST["zipcode"]);
-        $_SESSION["zipcode"] = $_POST["zipcode"];
+        $zipcodeSes = $_SESSION["zipcode"] = $_POST["zipcode"];
     }
 
 }
-$emailSes = $_SESSION["email"];
-$streetSes = $_SESSION["street"];
-$streetNumSes = $_SESSION["streetnumber"];
-$citySes = $_SESSION["city"];
-$zipcodeSes = $_SESSION["zipcode"];
-
 
 //function to validate email
 function emailValidation ($mailValidation) {
@@ -139,7 +155,7 @@ if (isset($_POST["refresh"])) {
 }
 
 //valid form message
-$formSend ="";
+
 if (isset ($_POST["order"])) {
     if ($_POST["order"] = false) {
         echo ("trash");
