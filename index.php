@@ -12,6 +12,7 @@ $streetErr = $streetNumbErr = $cityErr = $zipcodeErr = "";
 $street = $streetNumb = $city = $zipcode = "";
 $emailSes = $streetSes = $streetNumbSes = $citySes = $zipcodeSes = "";
 $productsDrinks = $products = "";
+$twoHours = "";
 $formSend ="";
 
 
@@ -153,7 +154,10 @@ if (isset($_POST["refresh"])) {
     header("refresh");
 
 }
-
+//calculating current time + 2 hours
+$plusTwoHours = date("H:i:s A" , strtotime("+2 hours"));
+//echo(strtotime("+2 hours") . "<br>");
+//echo strtotime("H:i:s d-m-Y");
 //valid form message
 
 if (isset ($_POST["order"])) {
@@ -161,7 +165,8 @@ if (isset ($_POST["order"])) {
         echo ("trash");
 
     } else {
-        $formSend = "<div class=\"alert alert-success\" role=\"alert\">Your form has been submitted</div>";
+        $formSend = "<div class=\"alert alert-success\" role=\"alert\">Your form has been submitted $plusTwoHours</div>";
+//        $twoHours = "<div class=\"alert alert-success\" role=\"alert\">  </div>";
     }
 }
 
