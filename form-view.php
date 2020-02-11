@@ -21,12 +21,16 @@
                 <a class="nav-link" href="?food=0">Order drinks</a>
             </li>
         </ul>
+        <form action="index.php" method="post">
+        <button type="submit" name="refresh" class="btn btn-primary">refresh page!</button>
+        </form>
     </nav>
+
     <form method="post">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail:</label>
-                <input type="text" id="email" name="email" class="form-control"/><?php echo($emailErr)?>
+                <input type="text" id="email" name="email" class="form-control"/>
             </div>
             <div></div>
         </div>
@@ -37,21 +41,33 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="street">Street:</label>
-                    <input type="text" name="street" id="street" class="form-control">
+                    <input type="text" name="street" id="street" class="form-control" value="<?php echo ($streetSes)?>">
+                    <div class="alert alert-danger">
+                        <?php echo ($streetErr)?>
+                    </div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="streetnumber">Street number:</label>
-                    <input type="text" id="streetnumber" name="streetnumber" class="form-control">
+                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" value="<?php echo ($streetNumSes)?>">
+                    <div class="alert alert-danger">
+                        <?php echo ($streetNumbErr)?>
+                    </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
-                    <input type="text" id="city" name="city" class="form-control">
+                    <input type="text" id="city" name="city" class="form-control" value="<?php echo ($citySes)?>">
+                    <div class="alert alert-danger">
+                        <?php echo ($cityErr)?>
+                    </div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode</label>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control">
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="<?php echo ($zipcodeSes)?>">
+                    <div class="alert alert-danger">
+                        <?php echo ($zipcodeErr)?>
+                    </div>
                 </div>
             </div>
         </fieldset>
