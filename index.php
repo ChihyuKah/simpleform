@@ -156,6 +156,10 @@ if (isset($_POST["refresh"])) {
 }
 //calculating current time + 2 hours
 $plusTwoHours = date("H:i:s A" , strtotime("+2 hours"));
+
+//calculating +45 minutes
+$plusFortyFive = date("H:i:s A" , strtotime("+45 minutes"));
+
 //echo(strtotime("+2 hours") . "<br>");
 //echo strtotime("H:i:s d-m-Y");
 //valid form message
@@ -165,10 +169,17 @@ if (isset ($_POST["order"])) {
         echo ("trash");
 
     } else {
-        $formSend = "<div class=\"alert alert-success\" role=\"alert\">Your form has been submitted $plusTwoHours</div>";
-//        $twoHours = "<div class=\"alert alert-success\" role=\"alert\">  </div>";
+        $formSend = "<div class=\"alert alert-success\" role=\"alert\">Your form has been submitted </div>";
     }
 }
+//choosing delivery option (step 4)
+if (isset ($_POST["standard"])) {
+    $twoHours = "<div class=\"alert alert-success\" role=\"alert\"> Estimated time of delivery:  $plusTwoHours </div>";
+} else if (isset($_POST["express"])){
+    $twoHours = "<div class=\"alert alert-success\" role=\"alert\"> Estimated time of delivery:  $plusFortyFive </div>";
+} else {
+    $twoHours = "<div class=\"alert alert-danger\" role=\"alert\"> Please select delivery option</div>";
 
+}
 require 'form-view.php';
 

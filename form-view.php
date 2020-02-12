@@ -82,6 +82,14 @@
             <?php endforeach; ?>
         </fieldset>
 
+        <fieldset>
+            <legend>Delivery method</legend>
+            <input type="checkbox" name="standard" value="standard">
+            <label for="standard"> Standard - €10</label><br>
+            <input type="checkbox" name="express" value="express">
+            <label for="express"> Express - €15</label><br>
+        </fieldset>
+
         <button type="submit" class="btn btn-primary" name="order">Order!</button>
     </form>
 
