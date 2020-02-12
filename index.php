@@ -45,7 +45,7 @@ $productsDrinks = [
     ['name' => 'Sprite', 'price' => 2],
     ['name' => 'Ice-tea', 'price' => 3],
 ];
-
+//step 3
 if (!isset($_GET["food"])) {
     $_GET["food"] = 1;
 }
@@ -56,7 +56,26 @@ if ($_GET["food"] == 1){
     $products = $productsDrinks;
 }
 
+//$shoppingcart =[];
+//
+//if (empty($_POST["$shoppingcart"])){
+//    $shoppingcart = $products;
+//}
+//$totalValue = 0;
+//for ($i = 0; $i < count($products); $i++) {
+//    if (isset($checked[$i])) {
+//        $totalValue += $products[$i]["price"];
+//    }
+//}
 
+if (isset($_POST["products"])) {
+    $prodIndex = array_keys($_POST["products"]);
+    foreach ($products as $i){
+        var_dump($i);
+        var_dump($prodIndex);
+        echo ($products[$i]["price"]);
+    }
+}
 $totalValue = 0;
 
 function inputfield($data) {
@@ -139,6 +158,7 @@ if (isset($_POST["email"]) && $_POST["streetnumber"]){
     }
 
 } else {
+    echo ($products[0]["price"]);
     echo ("Nothing in the INPUTA");
 }
 
